@@ -21,7 +21,16 @@ object Main {
   /**
    * Exercise 2
    */
-    def balance(chars: List[Char]): Boolean = ???
+    def balance(chars: List[Char]): Boolean = {
+      !chars.map(parseToNumber).scanLeft(0)(_+_).contains(-1) &&
+      chars.map(parseToNumber).sum == 0
+    }
+
+    private def parseToNumber(parenthesis: Char) = parenthesis match {
+      case '(' => 1
+      case ')' => -1
+      case _ => 0
+    }
     
   /**
    * Exercise 3
